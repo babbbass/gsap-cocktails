@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { navLinks } from "../../constants"
-export default function Navbar() {
+export function Navbar() {
   useGSAP(() => {
     const navTween = gsap.timeline({
       scrollTrigger: {
