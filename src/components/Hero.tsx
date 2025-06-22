@@ -1,11 +1,19 @@
 import { useGSAP } from "@gsap/react"
 import { SplitText } from "gsap/all"
 import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useRef } from "react"
+import { useMediaQuery } from "react-responsive"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const isMobile = useMediaQuery({ maxWidth: 767 })
+
   useGSAP(() => {
     const heroSplit = new SplitText(".title", {
-      type: "chars,  words",
+      type: "chars, words",
     })
     const paragraphSplit = new SplitText(".subtitle", {
       type: "lines",
@@ -29,6 +37,7 @@ export function Hero() {
       delay: 1,
     })
 
+    // Animate the leaves
     gsap
       .timeline({
         scrollTrigger: {
@@ -40,41 +49,74 @@ export function Hero() {
       })
       .to(".left-leaf", { y: -200 }, 0)
       .to(".right-leaf", { y: 200 }, 0)
+
+    const startValue = isMobile ? "top 40%" : "center 60%"
+    const endValue = isMobile ? "120% top" : "bottom top"
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "video",
+        start: startValue,
+        end: endValue,
+        scrub: true,
+        pin: true,
+      },
+    })
+
+    if (videoRef.current) {
+      videoRef.current.onloadedmetadata = () => {
+        if (videoRef.current)
+          tl.to(videoRef.current, {
+            currentTime: videoRef.current.duration,
+          })
+      }
+    }
   }, [])
 
   return (
-    <section id='hero' className='noisy'>
-      <h1 className='title'>MOJITO</h1>
-      <img
-        src='/images/hero-left-leaf.png'
-        alt='left leaf'
-        className='left-leaf'
-      />
-      <img
-        src='/images/hero-right-leaf.png'
-        alt='right leaf'
-        className='right-leaf'
-      />
-      <div className='body'>
-        <div className='content'>
-          <div className='space-y-5 hidden md:block'>
-            <p>Cool Crips Classic.</p>
-            <p className='subtitle'>
-              Sirotez l'esprit <br /> de l'été
-            </p>
-          </div>
-          <div className='view-cocktails'>
-            <p className='subtitle'>
-              Chaque cocktail de notre carte est un mélange d’ingrédients de
-              qualité supérieure, de créativité, d’originalité et de recettes
-              intemporelles – conçus pour ravir vos sens.
-            </p>
-            <a href='#cocktails' className='btn'>
-              Voir nos Cocktails
-            </a>
+    <>
+      <section id='hero' className='noisy'>
+        <h1 className='title'>MOJITO</h1>
+        <img
+          src='/images/hero-left-leaf.png'
+          alt='left leaf'
+          className='left-leaf'
+        />
+        <img
+          src='/images/hero-right-leaf.png'
+          alt='right leaf'
+          className='right-leaf'
+        />
+        <div className='body'>
+          <div className='content'>
+            <div className='space-y-5 hidden md:block'>
+              <p>Cool Crips Classic.</p>
+              <p className='subtitle'>
+                Sirotez l'esprit <br /> de l'été
+              </p>
+            </div>
+            <div className='view-cocktails'>
+              <p className='subtitle'>
+                Chaque cocktail de notre carte est un mélange d'ingrédients de
+                qualité supérieure, de créativité, d'originalité et de recettes
+                intemporelles – conçus pour ravir vos sens.
+              </p>
+              <a href='#cocktails' className='btn'>
+                Voir nos Cocktails
+              </a>
+            </div>
           </div>
         </div>
+      </section>
+      <div className='video absolute inset-0'>
+        <video
+          src='/videos/output.mp4'
+          playsInline
+          preload='auto'
+          muted
+          ref={videoRef}
+        />
       </div>
-    </section>
+    </>
   )
 }
