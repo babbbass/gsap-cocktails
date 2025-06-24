@@ -169,6 +169,41 @@ const sliderLists = [
   },
 ]
 
+const allCocktails = [
+  {
+    id: 1,
+    name: "Classic Mojito",
+    image: "/images/drink1.png",
+    title: "Ingrédients simples, saveur intense",
+    description:
+      "Préparée avec de la tequila, du jus de citron vert et de la liqueur d’orange, la Margarita est facile à réaliser et pleine de caractère. Ajoutez un bord salé pour un cocktail parfait lors des soirées d’été.",
+  },
+  {
+    id: 2,
+    name: "Raspberry Mojito",
+    image: "/images/drink2.png",
+    title: "Un classique acidulé qui fait toujours sensation",
+    description:
+      "La Margarita est un grand classique qui équilibre le peps du citron vert, la douceur de la tequila et une touche de sucre. Secouée, glacée ou servie sur glace, elle reste toujours fraîche et désaltérante.",
+  },
+  {
+    id: 3,
+    name: "Violet Breeze",
+    image: "/images/drink3.png",
+    title: "Ingrédients simples, saveur intense",
+    description:
+      "Préparée avec de la tequila, du jus de citron vert et de la liqueur d’orange, la Margarita est facile à réaliser et pleine de caractère. Ajoutez un bord salé pour obtenir le cocktail parfait lors des soirées d’été.",
+  },
+  {
+    id: 4,
+    name: "Curacao Mojito",
+    image: "/images/drink4.png",
+    title: "Préparé avec soin, servi avec amour",
+    description:
+      "Chaque cocktail est réalisé à partir d’ingrédients frais et d’une passion pour la perfection de chaque service, que ce soit pour célébrer ou simplement se détendre.",
+  },
+]
+
 export {
   navLinks,
   cocktailLists,
@@ -180,4 +215,5 @@ export {
   storeInfo,
   socials,
   sliderLists,
+  allCocktails,
 }
