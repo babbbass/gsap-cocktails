@@ -110,10 +110,10 @@ const storeInfo = {
 }
 
 const openingHours = [
-  { day: "Mon–Thu", time: "11:00am – 12am" },
-  { day: "Fri", time: "11:00am – 2am" },
-  { day: "Sat", time: "9:00am – 2am" },
-  { day: "Sun", time: "9:00am – 1am" },
+  { day: "Lun–Jeu", time: "11:00am – 12am" },
+  { day: "Ven", time: "11:00am – 2am" },
+  { day: "Sam", time: "9:00am – 2am" },
+  { day: "Dim", time: "9:00am – 1am" },
 ]
 
 const socials = [
